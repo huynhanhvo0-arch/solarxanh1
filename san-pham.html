@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sản phẩm & Thiết bị — SOLARXANH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink-navy:#0B1A22;
+    --deep-teal:#0F3B3A;
+    --solar-amber:#FF9F3E;
+    --spark-yellow:#FFD98E;
+    --circuit-teal:#3FE6C6;
+    --paper:#F8F4EA;
+    --graphite:#152420;
+    --mist:#B7CFC7;
+    --line:rgba(183,207,199,0.18);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--ink-navy); color:var(--mist); font-family:'Inter', sans-serif; overflow-x:hidden;}
+  h1,h2,h3,.display{font-family:'Be Vietnam Pro', sans-serif; color:var(--paper); font-weight:800; letter-spacing:-0.02em;}
+  .mono{font-family:'JetBrains Mono', monospace;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  section{position:relative;}
+
+  /* ===== NAV ===== */
+  nav{position:sticky; top:0; z-index:50; background:rgba(11,26,34,0.85); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:76px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Be Vietnam Pro'; font-weight:800; font-size:20px; color:var(--paper);}
+  .logo-mark{height:46px; width:auto; object-fit:contain; display:block;}
+  .nav-links{display:flex; gap:36px; font-size:14.5px; font-weight:500;}
+  .nav-links a{color:var(--mist); transition:color .2s;}
+  .nav-links a:hover, .nav-links a.active{color:var(--spark-yellow);}
+  .nav-cta{background:var(--solar-amber); color:var(--ink-navy)!important; font-weight:700; padding:11px 22px; border-radius:100px; font-size:14px; transition:transform .2s, box-shadow .2s;}
+  .nav-cta:hover{transform:translateY(-1px); box-shadow:0 6px 20px rgba(255,159,62,0.35);}
+  @media(max-width:860px){.nav-links{display:none;}}
+
+  /* ===== PAGE HEAD ===== */
+  .page-hero{padding:70px 0 40px;}
+  .breadcrumb{font-family:'JetBrains Mono'; font-size:12.5px; color:var(--circuit-teal); text-transform:uppercase; letter-spacing:.06em; margin-bottom:20px; display:block;}
+  .breadcrumb a{color:var(--mist); transition:color .2s;}
+  .breadcrumb a:hover{color:var(--spark-yellow);}
+  .page-hero h1{font-size:clamp(32px,4.4vw,48px); line-height:1.1; margin-bottom:16px; max-width:680px;}
+  .page-hero p{font-size:16.5px; color:var(--mist); max-width:560px; line-height:1.6;}
+
+  /* ===== FILTER TABS ===== */
+  .filter-bar{padding:20px 0 40px; position:sticky; top:76px; z-index:40; background:var(--ink-navy); border-bottom:1px solid var(--line);}
+  .filter-tabs{display:flex; gap:10px; flex-wrap:wrap;}
+  .filter-tab{
+    padding:10px 20px; border-radius:100px; border:1px solid var(--line); font-size:14px; font-weight:600;
+    color:var(--mist); cursor:pointer; background:transparent; transition:all .2s; font-family:'Inter';
+  }
+  .filter-tab:hover{border-color:var(--circuit-teal); color:var(--paper);}
+  .filter-tab.active{background:var(--solar-amber); border-color:var(--solar-amber); color:var(--ink-navy);}
+  .result-count{margin-left:auto; font-family:'JetBrains Mono'; font-size:13px; color:var(--mist); align-self:center;}
+  @media(max-width:700px){.filter-bar{position:static;} .result-count{margin-left:0; margin-top:8px; width:100%;}}
+
+  /* ===== PRODUCT GRID ===== */
+  .catalog{padding:50px 0 110px;}
+  .catalog-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .catalog-card{
+    border:1px solid var(--line); border-radius:20px; overflow:hidden;
+    background:linear-gradient(160deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
+    transition:border-color .25s, transform .25s;
+    display:flex; flex-direction:column;
+  }
+  .catalog-card:hover{border-color:var(--solar-amber); transform:translateY(-4px);}
+  .catalog-media{position:relative; height:200px; overflow:hidden;}
+  .catalog-media img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s ease;}
+  .catalog-card:hover .catalog-media img{transform:scale(1.06);}
+  .catalog-media .cat-eyebrow{
+    position:absolute; top:16px; left:16px; z-index:2; font-family:'JetBrains Mono'; font-size:11px;
+    letter-spacing:.05em; text-transform:uppercase; background:rgba(11,26,34,0.75); color:var(--spark-yellow);
+    padding:5px 11px; border-radius:100px;
+  }
+  .catalog-media .cat-stock{
+    position:absolute; top:16px; right:16px; z-index:2; font-family:'JetBrains Mono'; font-size:11px;
+    background:rgba(63,230,198,0.9); color:var(--ink-navy); padding:5px 11px; border-radius:100px; font-weight:700;
+  }
+  .catalog-body{padding:24px 26px 28px; display:flex; flex-direction:column; flex:1;}
+  .catalog-body h3{font-size:20px; margin-bottom:8px;}
+  .catalog-body .cat-desc{font-size:14px; color:var(--mist); line-height:1.55; margin-bottom:20px;}
+  .cat-specs{list-style:none; margin-bottom:22px; flex:1;}
+  .cat-specs li{position:relative; padding-left:16px; font-size:13.5px; color:var(--mist); margin-bottom:9px; line-height:1.4;}
+  .cat-specs li::before{content:''; position:absolute; left:0; top:6px; width:6px; height:6px; border-radius:50%; background:var(--circuit-teal);}
+  .cat-footer{display:flex; align-items:center; justify-content:space-between; margin-top:auto;}
+  .cat-price{font-family:'JetBrains Mono'; font-size:17px; color:var(--solar-amber); font-weight:600;}
+  .cat-price span{display:block; font-size:11px; color:var(--mist); font-family:'Inter'; font-weight:400;}
+  .cat-link{font-size:13.5px; font-weight:600; color:var(--paper); border-bottom:1px solid var(--circuit-teal); padding-bottom:2px; transition:color .2s;}
+  .cat-link:hover{color:var(--circuit-teal);}
+  @media(max-width:900px){.catalog-grid{grid-template-columns:1fr;}}
+
+  /* ===== CTA STRIP ===== */
+  .cta-strip{padding:80px 0 110px;}
+  .cta-panel{
+    background:linear-gradient(135deg, var(--solar-amber), #FFC366); border-radius:28px; padding:52px 60px;
+    display:flex; align-items:center; justify-content:space-between; gap:30px; flex-wrap:wrap;
+  }
+  .cta-panel h2{color:var(--ink-navy); font-size:clamp(22px,2.6vw,30px); max-width:520px;}
+  .cta-panel a{
+    background:var(--ink-navy); color:var(--spark-yellow); font-weight:700; padding:16px 30px; border-radius:100px;
+    font-size:15px; white-space:nowrap; transition:opacity .2s;
+  }
+  .cta-panel a:hover{opacity:0.85;}
+
+  footer{border-top:1px solid var(--line); padding:44px 0;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  footer .flinks{display:flex; gap:26px; font-size:13.5px;}
+  footer .fnote{font-size:13px; color:var(--mist); opacity:0.7;}
+
+  :focus-visible{outline:2px solid var(--circuit-teal); outline-offset:2px;}
+  @media (prefers-reduced-motion: reduce){* {transition:none!important;}}
+
+  /* ===== FLOATING CONTACT ===== */
+  .fc-wrap{
+    position:fixed; right:22px; bottom:26px; z-index:1000;
+    display:flex; flex-direction:column; gap:14px; align-items:flex-end;
+  }
+  .fc-btn{
+    width:54px; height:54px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 18px rgba(0,0,0,0.35); text-decoration:none; transition:transform .2s;
+  }
+  .fc-btn:hover{transform:scale(1.08);}
+  .fc-btn svg{width:26px; height:26px;}
+  .fc-messenger{background:linear-gradient(135deg,#00C6FF,#0068FF);}
+  .fc-zalo{background:#0068FF; font-family:'Be Vietnam Pro'; font-weight:800; font-size:13px; color:#fff;}
+  .fc-phone{
+    display:flex; align-items:center; gap:12px; height:54px; background:#FF3B30; border-radius:100px;
+    padding-right:20px; text-decoration:none; box-shadow:0 6px 20px rgba(255,59,48,0.45);
+  }
+  .fc-phone-icon{
+    width:54px; height:54px; border-radius:50%; background:#FF3B30; display:flex; align-items:center;
+    justify-content:center; position:relative; flex-shrink:0;
+  }
+  .fc-phone-icon::before{
+    content:''; position:absolute; inset:-6px; border-radius:50%; border:2px solid rgba(255,59,48,0.55);
+    animation:fcPulse 1.8s ease-out infinite;
+  }
+  .fc-phone-icon svg{width:24px; height:24px; position:relative; z-index:1;}
+  .fc-phone-number{color:#fff; font-family:'JetBrains Mono'; font-weight:700; font-size:15px; white-space:nowrap;}
+  @keyframes fcPulse{0%{transform:scale(1); opacity:0.7;} 100%{transform:scale(1.6); opacity:0;}}
+  @media(max-width:600px){
+    .fc-wrap{right:14px; bottom:16px; gap:10px;}
+    .fc-btn, .fc-phone-icon{width:48px; height:48px;}
+    .fc-phone-number{font-size:13px;}
+  }
+  @media (prefers-reduced-motion: reduce){.fc-phone-icon::before{animation:none;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="index.html">
+      <img src="logo.png" class="logo-mark" alt="SolarXanh logo">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html" class="active">Sản phẩm</a>
+      <a href="index.html#estimate">Ước tính chi phí</a>
+      <a href="ve-chung-toi.html">Về chúng tôi</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <a href="lien-he.html" class="nav-cta">Nhận báo giá</a>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="breadcrumb"><a href="index.html">Trang chủ</a> / Sản phẩm</span>
+    <h1>Thiết bị điện mặt trời chính hãng, bán lẻ từng phần</h1>
+    <p>Phù hợp khi bạn cần mua thêm hoặc thay thế một phần hệ thống hiện có — tấm pin, pin lưu trữ, bộ biến tần đều có sẵn, giao hàng toàn quốc.</p>
+  </div>
+</section>
+
+<section class="filter-bar">
+  <div class="wrap">
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">Tất cả</button>
+      <button class="filter-tab" data-filter="panel">Tấm pin</button>
+      <button class="filter-tab" data-filter="battery">Pin lưu trữ</button>
+      <button class="filter-tab" data-filter="inverter">Bộ biến tần</button>
+      <span class="result-count" id="resultCount">6 sản phẩm</span>
+    </div>
+  </div>
+</section>
+
+<section class="catalog">
+  <div class="wrap">
+    <div class="catalog-grid" id="catalogGrid">
+
+      <div class="catalog-card" data-cat="panel">
+        <div class="catalog-media">
+          <span class="cat-eyebrow">Tấm pin mặt trời</span>
+          <span class="cat-stock">Còn hàng</span>
+          <img src="https://images.unsplash.com/photo-1626793369994-a904d2462888?auto=format&fit=crop&w=800&q=80" alt="Tấm pin Mono PERC 550W">
+        </div>
+        <div class="catalog-body">
+          <h3>Tấm Pin Mono PERC 550W</h3>
+          <p class="cat-desc">Tấm pin đơn tinh thể hiệu suất cao, chịu nắng nóng và mưa bão, phù hợp khí hậu Việt Nam.</p>
+          <ul class="cat-specs">
+            <li>Công suất 550W / tấm</li>
+            <li>Hiệu suất chuyển đổi ≥ 21%</li>
+            <li>Bảo hành hiệu suất 25 năm</li>
+            <li>Đạt chuẩn IEC chịu gió, mưa đá</li>
+          </ul>
+          <div class="cat-footer">
+            <div class="cat-price">3,2 triệu<span>/tấm</span></div>
+            <a href="lien-he.html" class="cat-link">Xem chi tiết</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card" data-cat="panel">
+        <div class="catalog-media">
+          <span class="cat-eyebrow">Tấm pin mặt trời</span>
+          <span class="cat-stock">Còn hàng</span>
+          <img src="https://images.unsplash.com/photo-1589276534126-adef63a95e05?auto=format&fit=crop&w=800&q=80" alt="Tấm pin Bifacial 605W">
+        </div>
+        <div class="catalog-body">
+          <h3>Tấm Pin Bifacial 605W</h3>
+          <p class="cat-desc">Hấp thụ ánh sáng cả hai mặt, tăng sản lượng điện thêm 5–10% so với tấm pin thường.</p>
+          <ul class="cat-specs">
+            <li>Công suất 605W / tấm</li>
+            <li>Hiệu suất chuyển đổi ≥ 22%</li>
+            <li>Bảo hành hiệu suất 30 năm</li>
+            <li>Phù hợp mái tôn, mặt đất, trang trại</li>
+          </ul>
+          <div class="cat-footer">
+            <div class="cat-price">3,9 triệu<span>/tấm</span></div>
+            <a href="lien-he.html" class="cat-link">Xem chi tiết</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card" data-cat="battery">
+        <div class="catalog-media">
+          <span class="cat-eyebrow">Pin lưu trữ</span>
+          <span class="cat-stock">Còn hàng</span>
+          <img src="https://images.unsplash.com/photo-1780445392417-68b9dccc45f2?auto=format&fit=crop&w=800&q=80" alt="Pin Lithium LFP gắn tường 5kWh">
+        </div>
+        <div class="catalog-body">
+          <h3>Pin Lithium LFP Gắn Tường 5kWh</h3>
+          <p class="cat-desc">Công nghệ LFP an toàn, tuổi thọ cao, tự động cấp điện khi mất điện lưới.</p>
+          <ul class="cat-specs">
+            <li>Dung lượng 5 kWh / module</li>
+            <li>Ghép nối tối đa 4 module (20 kWh)</li>
+            <li>Hơn 6.000 chu kỳ sạc/xả</li>
+            <li>Bảo hành 10 năm</li>
+          </ul>
+          <div class="cat-footer">
+            <div class="cat-price">42 triệu<span>/module</span></div>
+            <a href="lien-he.html" class="cat-link">Xem chi tiết</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card" data-cat="battery">
+        <div class="catalog-media">
+          <span class="cat-eyebrow">Pin lưu trữ</span>
+          <span class="cat-stock">Đặt trước</span>
+          <img src="https://images.unsplash.com/photo-1745187946672-2c1d8cf26a2b?auto=format&fit=crop&w=800&q=80" alt="Pin lưu trữ công nghiệp 15kWh">
+        </div>
+        <div class="catalog-body">
+          <h3>Pin Lưu Trữ Công Nghiệp 15kWh</h3>
+          <p class="cat-desc">Dung lượng lớn cho văn phòng, cửa hàng, xưởng nhỏ cần dự phòng điện dài giờ.</p>
+          <ul class="cat-specs">
+            <li>Dung lượng 15 kWh / bộ</li>
+            <li>Tương thích inverter 3 pha</li>
+            <li>Giám sát nhiệt độ, an toàn cháy nổ</li>
+            <li>Bảo hành 10 năm</li>
+          </ul>
+          <div class="cat-footer">
+            <div class="cat-price">118 triệu<span>/bộ</span></div>
+            <a href="lien-he.html" class="cat-link">Xem chi tiết</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card" data-cat="inverter">
+        <div class="catalog-media">
+          <span class="cat-eyebrow">Bộ biến tần</span>
+          <span class="cat-stock">Còn hàng</span>
+          <img src="https://images.unsplash.com/photo-1780445392484-38a4852a1fd8?auto=format&fit=crop&w=800&q=80" alt="Inverter Hybrid 3 pha 10kW">
+        </div>
+        <div class="catalog-body">
+          <h3>Inverter Hybrid 3 Pha 10kW</h3>
+          <p class="cat-desc">Chuyển đổi điện DC từ tấm pin thành AC, tương thích cả pin lưu trữ và hoà lưới.</p>
+          <ul class="cat-specs">
+            <li>Công suất 10 kW, 3 pha</li>
+            <li>Hiệu suất chuyển đổi ≥ 97,5%</li>
+            <li>Giám sát từ xa qua ứng dụng</li>
+            <li>Bảo hành 10 năm</li>
+          </ul>
+          <div class="cat-footer">
+            <div class="cat-price">28 triệu<span>/bộ</span></div>
+            <a href="lien-he.html" class="cat-link">Xem chi tiết</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="catalog-card" data-cat="inverter">
+        <div class="catalog-media">
+          <span class="cat-eyebrow">Bộ biến tần</span>
+          <span class="cat-stock">Còn hàng</span>
+          <img src="https://images.unsplash.com/photo-1715605569717-494ac7c5656a?auto=format&fit=crop&w=800&q=80" alt="Inverter hoà lưới 1 pha 5kW">
+        </div>
+        <div class="catalog-body">
+          <h3>Inverter Hoà Lưới 1 Pha 5kW</h3>
+          <p class="cat-desc">Giải pháp gọn nhẹ, chi phí thấp cho hệ thống hoà lưới không pin ở nhà phố.</p>
+          <ul class="cat-specs">
+            <li>Công suất 5 kW, 1 pha</li>
+            <li>Hiệu suất chuyển đổi ≥ 97%</li>
+            <li>Kích thước nhỏ gọn, dễ lắp đặt</li>
+            <li>Bảo hành 8 năm</li>
+          </ul>
+          <div class="cat-footer">
+            <div class="cat-price">15,5 triệu<span>/bộ</span></div>
+            <a href="lien-he.html" class="cat-link">Xem chi tiết</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="wrap">
+    <div class="cta-panel">
+      <h2>Không chắc nên chọn thiết bị nào? Để kỹ sư tư vấn miễn phí.</h2>
+      <a href="lien-he.html">Nhận tư vấn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="index.html" style="font-size:16px;">
+      <img src="logo.png" class="logo-mark" style="height:34px;width:auto;" alt="SolarXanh logo">
+    </a>
+    <div class="flinks">
+      <a href="index.html">Trang chủ</a>
+      <a href="san-pham.html">Sản phẩm</a>
+      <a href="ve-chung-toi.html">Về chúng tôi</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </div>
+    <div class="fnote">© 2026 SolarXanh · solarxanh.net — Mọi nội dung chỉ mang tính minh hoạ.</div>
+  </div>
+</footer>
+
+<script>
+  const tabs = document.querySelectorAll('.filter-tab');
+  const cards = document.querySelectorAll('.catalog-card');
+  const countEl = document.getElementById('resultCount');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const filter = tab.dataset.filter;
+      let visible = 0;
+      cards.forEach(card => {
+        const show = filter === 'all' || card.dataset.cat === filter;
+        card.style.display = show ? 'flex' : 'none';
+        if(show) visible++;
+      });
+      countEl.textContent = visible + ' sản phẩm';
+    });
+  });
+</script>
+
+<div class="fc-wrap">
+  <a href="https://m.me/solarxanh" target="_blank" rel="noopener" class="fc-btn fc-messenger" aria-label="Nhắn tin qua Messenger">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.15 2 11.25c0 2.9 1.44 5.49 3.7 7.19V22l3.38-1.86c.9.25 1.87.39 2.92.39 5.52 0 10-4.15 10-9.28S17.52 2 12 2z" fill="#fff"/><path d="M6.5 13.7 10.3 9.7 13.3 12.5 17.5 8.3 13.7 12.3 10.7 9.5z" fill="#0068FF"/></svg>
+  </a>
+  <a href="https://zalo.me/0901510550" target="_blank" rel="noopener" class="fc-btn fc-zalo" aria-label="Nhắn tin qua Zalo">Zalo</a>
+  <a href="tel:0901510550" class="fc-phone" aria-label="Gọi điện 0901 510 550">
+    <span class="fc-phone-icon">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.5 21 3 13.5 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="#fff"/></svg>
+    </span>
+    <span class="fc-phone-number">0901 510 550</span>
+  </a>
+</div>
+
+</body>
+</html>
